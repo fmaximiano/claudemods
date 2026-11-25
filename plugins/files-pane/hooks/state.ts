@@ -1,0 +1,28 @@
+import type { View } from '../types'
+
+export const PANE = 'files-pane'
+// The pane an opened file shows in, a tab beside the Files pane.
+export const FILE_PANE = 'files-pane-file'
+
+// Hidden files show by default, as in VS Code's explorer: the toolbar offers to hide them.
+export const DEFAULT_VIEW: View = { query: '', root: '', dir: '', expanded: [], showSizes: false, showHidden: true, changed: null }
+
+// The pane's values, each made by `atom` in every file that uses it (the engine's scan reads only
+// an atom made in the file at hand), so their tags live here to be kept the same. Change a tag when
+// its value's fields change: it declines what an earlier version stored.
+//
+//   now      'now-3'      what the card says: Now | null
+//   touched  'touched-3'  this turn's files: Touch[]
+//   earlier  'touched-3'  the earlier turns' files, for the whole-session list: Touch[]
+//   scope    'scope-1'    which of those the list shows: Scope
+//   isTouchedAll (none)   whether that list shows every file, past the newest few: boolean
+//   view     'view-4'     the tree's controls: View
+//   git      'git-6'      git's view of the project shown: Git | null
+//   pr       'pr-2'       the pull request for the branch shown: Pr | null
+//   diff     'diff-2'     the diff open under a file's row: Diff | null
+//   menu     'menu-2'     the file whose actions are open, and their submenu: Menu | null
+//   status   'status-1'   the commit line at the pane's foot: Status | null
+//   tick     (none)       bumped by Refresh, so the tree is listed again
+//   opened   'opened-1'   the file open in the file pane, and its tab: Opened | null
+//   log      'log-1'      the session's changes, oldest first: Change[]
+//   isLogShown (none)     whether the timeline is open: boolean

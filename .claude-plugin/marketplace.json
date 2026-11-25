@@ -18,6 +18,36 @@
       "name": "pocock-skills",
       "source": "./plugins/pocock-skills",
       "description": "Seleção de 10 skills de Matt Pocock (grilling, teach, to-questionnaire, prototype...). Cópia fixa de mattpocock/skills @ 6f7f783 (MIT)."
+    },
+    {
+      "name": "next-steps",
+      "source": "./plugins/next-steps",
+      "description": "Sugere 2 ou 3 próximos passos após cada resposta; botões no desktop. Cópia de bradtraversy/traversy-claude-mods (MIT)."
+    },
+    {
+      "name": "subagent-progress",
+      "source": "./plugins/subagent-progress",
+      "description": "Barra de progresso acima do prompt e painel de subagentes com modelo, progresso, contexto, custo e tempo; paleta e animação configuráveis. Cópia de afterever/claude-craftkits (MIT)."
+    },
+    {
+      "name": "theme-examples",
+      "source": "./plugins/theme-examples",
+      "description": "38 temas animados para o app desktop, claros e escuros, alguns interativos e com som (/custom-theme). Cópia de anthropics/claude-plugins-official (Apache-2.0)."
+    },
+    {
+      "name": "files-pane",
+      "source": "./plugins/files-pane",
+      "description": "Árvore de arquivos ao lado do chat: lidos em roxo, editados em laranja, sem commit em amarelo, com commit em verde; diffs e git (/files). Cópia de Marius-Adam/claude-files-pane (MIT)."
+    },
+    {
+      "name": "cache-keeper",
+      "source": "./plugins/cache-keeper",
+      "description": "Cronômetro do cache, keep warm, custo estimado de envio a frio, painel de sessões (/board) e handoff para chat novo. Cópia de nateherkai/claude-code-mods (MIT)."
+    },
+    {
+      "name": "atc-reflect",
+      "source": "./plugins/atc-reflect",
+      "description": "Detecta regras e correções nas suas mensagens e pergunta se quer salvá-las no CLAUDE.md. Cópia de atc-net/atc-agentic-toolkit (MIT)."
     }
   ]
 }

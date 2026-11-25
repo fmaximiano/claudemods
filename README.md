@@ -7,6 +7,14 @@ Mods para o Claude Code.
 | `markdown-everywhere` | Suas mensagens renderizadas em Markdown + pré-visualização do rascunho |
 | `nextphase-switchboard` | Painel (`/switchboard`) para ligar/desligar plugins e mods. Cópia auditada e congelada de [nextphase-software/nextphase-mods](https://github.com/nextphase-software/nextphase-mods) @ `d74f99b` (MIT) |
 | `pocock-skills` | 10 skills de Matt Pocock: `grill-me`, `grill-with-docs`, `teach`, `to-questionnaire`, `prototype` e outras. Cópia fixa de [mattpocock/skills](https://github.com/mattpocock/skills) @ `6f7f783` (MIT) |
+| `next-steps` | Sugere 2 ou 3 próximos passos após cada resposta (botões no desktop). Cópia de [bradtraversy/traversy-claude-mods](https://github.com/bradtraversy/traversy-claude-mods) (MIT) |
+| `subagent-progress` | Barra de progresso + painel de subagentes (modelo, progresso, contexto, custo, tempo), personalizável. Cópia de [afterever/claude-craftkits](https://github.com/afterever/claude-craftkits) (MIT) |
+| `theme-examples` | 38 temas animados para o app desktop (`/custom-theme`). Cópia do oficial [anthropics/claude-plugins-official](https://github.com/anthropics/claude-plugins-official) (Apache-2.0) |
+| `files-pane` | Árvore de arquivos com cores por estado (lido, editado, sem commit, commitado), diffs e git (`/files`). Cópia de [Marius-Adam/claude-files-pane](https://github.com/Marius-Adam/claude-files-pane) (MIT) |
+| `cache-keeper` | Cronômetro do cache, keep warm, custo de envio a frio, `/board` e `/handoff`. Cópia de [nateherkai/claude-code-mods](https://github.com/nateherkai/claude-code-mods) (MIT) |
+| `atc-reflect` | Detecta regras nas suas mensagens e oferece salvá-las no `CLAUDE.md`. Cópia de [atc-net/atc-agentic-toolkit](https://github.com/atc-net/atc-agentic-toolkit) (MIT) |
+
+Todas as cópias de terceiros foram auditadas antes de entrar aqui e estão congeladas no commit indicado no README de cada mod: não recebem atualizações automáticas do original.
 
 Instalação de qualquer um: troque o nome do mod nos comandos abaixo.
 

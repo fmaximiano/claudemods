@@ -13,6 +13,11 @@
       "name": "nextphase-switchboard",
       "source": "./plugins/nextphase-switchboard",
       "description": "Painel para ligar e desligar plugins e mods instalados (/switchboard). Cópia auditada de nextphase-software/nextphase-mods @ d74f99b."
+    },
+    {
+      "name": "pocock-skills",
+      "source": "./plugins/pocock-skills",
+      "description": "Seleção de 10 skills de Matt Pocock (grilling, teach, to-questionnaire, prototype...). Cópia fixa de mattpocock/skills @ 6f7f783 (MIT)."
     }
   ]
 }

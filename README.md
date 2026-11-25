@@ -6,6 +6,7 @@ Mods para o Claude Code.
 |---|---|
 | `markdown-everywhere` | Suas mensagens renderizadas em Markdown + pré-visualização do rascunho |
 | `nextphase-switchboard` | Painel (`/switchboard`) para ligar/desligar plugins e mods. Cópia auditada e congelada de [nextphase-software/nextphase-mods](https://github.com/nextphase-software/nextphase-mods) @ `d74f99b` (MIT) |
+| `pocock-skills` | 10 skills de Matt Pocock: `grill-me`, `grill-with-docs`, `teach`, `to-questionnaire`, `prototype` e outras. Cópia fixa de [mattpocock/skills](https://github.com/mattpocock/skills) @ `6f7f783` (MIT) |
 
 Instalação de qualquer um: troque o nome do mod nos comandos abaixo.
 

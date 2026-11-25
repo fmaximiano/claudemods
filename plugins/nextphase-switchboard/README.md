@@ -7,3 +7,9 @@ Type `/nextphase-switchboard` (short form `/switchboard`) to open it. Pressing a
 ---
 
 **Cópia auditada.** Esta pasta é uma cópia fixa de [nextphase-software/nextphase-mods](https://github.com/nextphase-software/nextphase-mods/tree/d74f99b042f7af037549cdbcf5327d51375735b6/plugins/nextphase-switchboard), commit `d74f99b` (24/10/2026). O código foi revisado antes da cópia e não recebe atualizações automáticas do original. Licença MIT do autor original mantida em `LICENSE`.
+
+## Instalação
+
+```
+/plugin install nextphase-switchboard --marketplace fmaximiano/claudemods
+```

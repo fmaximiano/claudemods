@@ -2,6 +2,13 @@
 
 Mods para o Claude Code.
 
+| Mod | O que faz |
+|---|---|
+| `markdown-everywhere` | Suas mensagens renderizadas em Markdown + pré-visualização do rascunho |
+| `nextphase-switchboard` | Painel (`/switchboard`) para ligar/desligar plugins e mods. Cópia auditada e congelada de [nextphase-software/nextphase-mods](https://github.com/nextphase-software/nextphase-mods) @ `d74f99b` (MIT) |
+
+Instalação de qualquer um: troque o nome do mod nos comandos abaixo.
+
 ## markdown-everywhere
 
 - **Mensagens enviadas:** as suas mensagens no histórico são renderizadas como Markdown, igual às respostas do Claude.

@@ -1,11 +1,18 @@
 {
   "name": "claudemods",
-  "owner": { "name": "fmaximiano" },
+  "owner": {
+    "name": "fmaximiano"
+  },
   "plugins": [
     {
       "name": "markdown-everywhere",
       "source": "./plugins/markdown-everywhere",
       "description": "Renderiza as mensagens do usuário como Markdown e mostra uma pré-visualização ao vivo do rascunho"
+    },
+    {
+      "name": "nextphase-switchboard",
+      "source": "./plugins/nextphase-switchboard",
+      "description": "Painel para ligar e desligar plugins e mods instalados (/switchboard). Cópia auditada de nextphase-software/nextphase-mods @ d74f99b."
     }
   ]
 }

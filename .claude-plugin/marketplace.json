@@ -1,0 +1,11 @@
+{
+  "name": "claudemods",
+  "owner": { "name": "fmaximiano" },
+  "plugins": [
+    {
+      "name": "markdown-everywhere",
+      "source": "./plugins/markdown-everywhere",
+      "description": "Renderiza as mensagens do usuário como Markdown e mostra uma pré-visualização ao vivo do rascunho"
+    }
+  ]
+}

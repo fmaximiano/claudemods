@@ -9,12 +9,14 @@ Seleção de 10 skills de [mattpocock/skills](https://github.com/mattpocock/skil
 | `domain-modeling` | Mantém o `GLOSSARY.md` e os ADRs; é chamada pelo `grill-with-docs` |
 | `to-questionnaire` | Transforma uma decisão que depende de outra pessoa num questionário em Markdown |
 | `teach` | Curso em várias sessões sobre um tema, com lições em HTML e registro de progresso na pasta atual |
-| `wait-what` | Pede para o Claude reexplicar a última resposta de forma simples |
+| `wait-what` | Pede para o Claude reexplicar a última resposta em português simples *(adaptada)* |
 | `handoff` | Resume a conversa num documento para outra sessão continuar |
 | `research` | Pesquisa em fontes primárias com um agente em segundo plano e salva as conclusões em Markdown |
 | `prototype` | Protótipo descartável para testar uma lógica ou uma interface |
 
 Os arquivos `agents/openai.yaml` do original (usados só pelo Codex) foram omitidos.
+
+**Modificações em relação ao original:** `wait-what` foi reescrita para pedir a reexplicação em português simples, em vez de ASD-STE100 (inglês técnico simplificado).
 
 ## Instalação
 

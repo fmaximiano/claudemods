@@ -31,6 +31,8 @@ export function overShader(
       return <Shader module="./scenes/garden-beetles/scene.ts">{still}</Shader>
     case 'koi-pond':
       return <Shader module="./scenes/koi-pond/scene.ts">{still}</Shader>
+    case 'portas-de-durin':
+      return <Shader module="./scenes/portas-de-durin/scene.ts">{still}</Shader>
     case 'ripple-tank':
       return <Shader module="./scenes/ripple-tank/scene.ts">{still}</Shader>
     case 'sea-sparkle':

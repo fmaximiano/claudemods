@@ -25,6 +25,7 @@ import { rippleTankSvg } from './scenes/ripple-tank/still'
 import { seaSparkleSvg } from './scenes/sea-sparkle/still'
 import { semicolonySvg } from './scenes/semicolony/still'
 import { starChartSvg } from './scenes/star-chart/still'
+import { portasDeDurinSvg } from './scenes/portas-de-durin/still'
 import { FALLING_SAND_SOUND, KOI_POND_SOUND } from './sounds'
 import type { Sound } from './sounds'
 
@@ -35,6 +36,7 @@ export type ShaderScene =
   | 'field-lines'
   | 'garden-beetles'
   | 'koi-pond'
+  | 'portas-de-durin'
   | 'ripple-tank'
   | 'sea-sparkle'
   | 'semicolony'
@@ -268,6 +270,15 @@ export const THEMES: readonly Theme[] = [
     window: 'dark',
     glass: { blur: 14, tint: '#0b0f17', opacity: 0.6 },
     scene: shadowMithrilSvg,
+  },
+  {
+    id: 'portas-de-durin',
+    title: 'Portas de Durin',
+    blurb: 'The White Tree and the Doors of Durin in pale gold on a green night; a faint glow follows the pointer.',
+    window: 'dark',
+    glass: { blur: 0, tint: '#0b1712', opacity: 0.64 },
+    scene: portasDeDurinSvg,
+    shader: 'portas-de-durin',
   },
   {
     id: 'duck-pond',

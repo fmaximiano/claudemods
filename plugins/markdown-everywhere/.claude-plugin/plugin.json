@@ -1,1 +1,5 @@
-{ "name": "markdown-everywhere", "version": "0.2.0", "description": "Renderiza as mensagens do usuário como Markdown e mostra uma pré-visualização ao vivo do rascunho", "types": "./types/index.d.ts" }
+{
+  "name": "markdown-everywhere",
+  "version": "0.3.0",
+  "description": "Renderiza as mensagens do usuário como Markdown e estiliza o Markdown no campo de mensagem (terminal)"
+}

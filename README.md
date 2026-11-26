@@ -4,7 +4,7 @@ Mods para o Claude Code.
 
 | Mod | O que faz |
 |---|---|
-| `markdown-everywhere` | Suas mensagens renderizadas em Markdown + pré-visualização do rascunho |
+| `markdown-everywhere` | Suas mensagens renderizadas em Markdown e estilo Markdown no campo de mensagem (terminal) |
 | `nextphase-switchboard` | Painel (`/switchboard`) para ligar/desligar plugins e mods. Cópia auditada e congelada de [nextphase-software/nextphase-mods](https://github.com/nextphase-software/nextphase-mods) @ `d74f99b` (MIT) |
 | `pocock-skills` | 10 skills de Matt Pocock: `grill-me`, `grill-with-docs`, `teach`, `to-questionnaire`, `prototype` e outras. Cópia fixa de [mattpocock/skills](https://github.com/mattpocock/skills) @ `6f7f783` (MIT) |
 | `next-steps` | Sugere 2 ou 3 próximos passos após cada resposta (botões no desktop). Cópia de [bradtraversy/traversy-claude-mods](https://github.com/bradtraversy/traversy-claude-mods) (MIT) |
@@ -22,7 +22,6 @@ Instalação de qualquer um: troque o nome do mod nos comandos abaixo.
 
 - **Mensagens enviadas:** as suas mensagens no histórico são renderizadas como Markdown, igual às respostas do Claude.
 - **Campo de mensagem (terminal):** negrito, itálico, código, títulos, listas, citações e links ganham estilo enquanto você digita.
-- **Pré-visualização:** uma faixa acima do campo de mensagem mostra o rascunho renderizado. O comando `/preview` liga e desliga a faixa.
 
 ### Instalação
 
@@ -44,4 +43,4 @@ No app desktop, onde `/plugin` não funciona: clique em **+** ao lado do campo d
 
 ### Limitações
 
-O estilo dentro do campo de mensagem funciona no terminal. Pode ser que o app desktop não o aplique; nesse caso, use a faixa de pré-visualização.
+O estilo dentro do campo de mensagem funciona no terminal; o app desktop não o aplica.

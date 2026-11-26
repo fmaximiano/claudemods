@@ -1,11 +1,4 @@
-import { atom, read, update } from 'claude-code'
 import type { Register, PromptDecoration } from 'claude-code'
-
-import type { Draft } from '../types'
-
-const draft = atom({ plugin: 'markdown-everywhere', key: 'draft' } as const, { text: '', via: 'leitura' } as Draft)
-const isOn = atom({ plugin: 'markdown-everywhere', key: 'isOn' } as const, true)
-const POLL_MS = 400
 
 // Origens que representam o que a própria pessoa digitou
 const HUMAN = new Set(['composer', 'bridge', 'sdk', 'unclassified'])
@@ -91,61 +84,19 @@ function decorate(text: string): Deco[] {
   return out
 }
 
-async function setDraft($: Parameters<typeof read>[0], text: string, via: Draft['via']) {
-  const cur = await read($, draft)
-  if (cur.text !== text) await update($, draft, () => ({ text, via }))
-}
-
 export const register: Register = on => {
-  on('session.start', async ($, e, next) => {
-    await $.command.register({ name: 'preview', description: 'Liga/desliga a pré-visualização Markdown do rascunho' })
-    // Fallback: lê o campo periodicamente, para apps que não enviam cada tecla
-    $.clock.every(POLL_MS, async () => {
-      if (!(await read($, isOn))) return
-      const { text } = await $.prompt.read()
-      await setDraft($, text, 'leitura')
-    })
-    return next(e)
-  })
-
-  on('command.run', { command: 'preview' }, async $ => {
-    const enabled = await update($, isOn, v => !v)
-    return { text: enabled ? 'Pré-visualização ligada.' : 'Pré-visualização desligada.' }
-  })
-
-  // 1) Estilo dentro do campo (terminal) + rascunho para a faixa
+  // 1) Estilo dentro do campo de mensagem (terminal)
   on('prompt.edit', async ($, e, next) => {
     const r = await next(e)
-    await setDraft($, r.text, 'edição')
     return { ...r, decorations: [...(r.decorations ?? []), ...decorate(r.text)] }
   })
 
   on('prompt.change', async ($, e, next) => {
     const result = await next(e)
-    await setDraft($, e.text, 'mudança')
     try {
       await $.prompt.paint({ text: e.text, decorations: e.text ? decorate(e.text) : [] })
     } catch { /* superfície sem campo de texto: ignora */ }
     return result
-  })
-
-  on('prompt.submit', async ($, e, next) => {
-    await update($, draft, () => ({ text: '', via: 'mudança' }))
-    return next(e)
-  })
-
-  // Faixa de pré-visualização acima do campo de mensagem
-  on('ui.render', { component: 'AbovePrompt' }, async ($, e, next) => {
-    const d = await read($, draft)
-    if (e.props.hasSurvey || !(await read($, isOn)) || !d.text.trim()) return next(e)
-
-    const { Box, Text, Markdown } = $.ui.resolve(e)
-    return (
-      <Box flexDirection="column" borderStyle="round" paddingX={1}>
-        <Text dimColor>Pré-visualização · via {d.via} · /preview desliga</Text>
-        <Markdown text={d.text} />
-      </Box>
-    )
   })
 
   // 2) Mensagens já enviadas renderizadas como Markdown

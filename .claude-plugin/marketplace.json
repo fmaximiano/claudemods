@@ -7,7 +7,7 @@
     {
       "name": "markdown-everywhere",
       "source": "./plugins/markdown-everywhere",
-      "description": "Renderiza as mensagens do usuário como Markdown e mostra uma pré-visualização ao vivo do rascunho"
+      "description": "Renderiza as mensagens do usuário como Markdown e estiliza o Markdown no campo de mensagem (terminal)"
     },
     {
       "name": "nextphase-switchboard",

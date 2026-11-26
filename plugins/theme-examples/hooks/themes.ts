@@ -13,6 +13,7 @@ import { paperGardenSvg, paperGardenKraftSvg } from './scenes/paper-garden'
 import { plotterTideSvg, plotterTideNightSvg } from './scenes/plotter-tide'
 import { snowPinesSvg } from './scenes/snow-pines'
 import { teletextCloudsSvg } from './scenes/teletext-clouds'
+import { terraMediaSvg, terraMediaNightSvg } from './scenes/terra-media'
 import { vectorRangeSvg } from './scenes/vector-range'
 import { duckPondSvg } from './scenes/duck-pond/still'
 import { fallingSandSvg } from './scenes/falling-sand/still'
@@ -240,6 +241,24 @@ export const THEMES: readonly Theme[] = [
     window: 'dark',
     glass: { blur: 12, tint: '#2a0d12', opacity: 0.3 },
     scene: emberSvg,
+  },
+  {
+    id: 'terra-media',
+    title: 'Terra-média',
+    blurb: 'An inked map on parchment: misty peaks, an old forest, a moving river and a gold ring.',
+    window: 'light',
+    twin: 'terra-media-night',
+    glass: { blur: 14, tint: '#f1e4c3', opacity: 0.5 },
+    scene: terraMediaSvg,
+  },
+  {
+    id: 'terra-media-night',
+    title: 'Terra-média, Noite',
+    blurb: 'Stars over dark ranges, a smoking fire-mountain, a far watchtower and a lit round door.',
+    window: 'dark',
+    twin: 'terra-media',
+    glass: { blur: 14, tint: '#10142a', opacity: 0.45 },
+    scene: terraMediaNightSvg,
   },
   {
     id: 'duck-pond',

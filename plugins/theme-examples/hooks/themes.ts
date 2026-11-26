@@ -14,6 +14,7 @@ import { plotterTideSvg, plotterTideNightSvg } from './scenes/plotter-tide'
 import { snowPinesSvg } from './scenes/snow-pines'
 import { teletextCloudsSvg } from './scenes/teletext-clouds'
 import { terraMediaSvg, terraMediaNightSvg } from './scenes/terra-media'
+import { shadowMithrilSvg } from './scenes/shadow-mithril'
 import { vectorRangeSvg } from './scenes/vector-range'
 import { duckPondSvg } from './scenes/duck-pond/still'
 import { fallingSandSvg } from './scenes/falling-sand/still'
@@ -259,6 +260,14 @@ export const THEMES: readonly Theme[] = [
     twin: 'terra-media',
     glass: { blur: 14, tint: '#10142a', opacity: 0.45 },
     scene: terraMediaNightSvg,
+  },
+  {
+    id: 'sombra-e-mithril',
+    title: 'Sombra e Mithril',
+    blurb: 'A white tree under seven stars, slow gold rings of glyphs and hatched fire-mountains.',
+    window: 'dark',
+    glass: { blur: 14, tint: '#0b0f17', opacity: 0.6 },
+    scene: shadowMithrilSvg,
   },
   {
     id: 'duck-pond',

@@ -45,7 +45,23 @@ const S = {
   rateLimits: [],
 }
 
-const settings = { bigTokens: 150000, guard: true, ttlMin: 0, alerts: true, keepWarmHours: 4 }
+const settings = { bigTokens: 150000, guard: true, ttlMin: 0, alerts: true, keepWarmHours: 4, handoffAt: 120000 }
+
+// claudemods: the handoff button shows once the context reaches settings.handoffAt
+// tokens (0 = always), with a one-time toast when it first crosses that line.
+let handoffNotified = false
+function handoffOffered() {
+  return !settings.handoffAt || S.ctx >= settings.handoffAt
+}
+function noteHandoffThreshold($) {
+  if (!settings.handoffAt || S.ctx < settings.handoffAt) {
+    handoffNotified = false
+    return
+  }
+  if (handoffNotified) return
+  handoffNotified = true
+  $.ui.toast(`Context reached ${tokens(S.ctx)} tokens: the handoff button is now available (or type /${names.handoff}).`, { timeoutMs: 10000 })
+}
 const names = { cache: 'cache', keepwarm: 'keepwarm', board: 'board', handoff: 'handoff' }
 
 let now = 0
@@ -435,7 +451,8 @@ function statusText() {
   if (S.rateLimits.length) lines.push(`Plan limits used: ${limitsText(S.rateLimits)}.`)
   lines.push(`Session cost so far: ${money(S.costUsd)}. Cold restarts this session: ${S.coldRestarts.length} (${money(S.coldRestarts.reduce((a, c) => a + c.usd, 0))}).`)
   lines.push(`Cold-send guard: ${settings.guard ? 'on' : 'off'} for contexts over ${tokens(settings.bigTokens)} tokens. Alerts: ${settings.alerts ? 'on' : 'off'}.`)
-  lines.push(`Settings: /${names.cache} ttl 5|60|auto, /${names.cache} guard on|off, /${names.cache} big 150k, /${names.cache} alerts on|off. Board: /${names.board}.`)
+  lines.push(`Handoff button: ${settings.handoffAt ? `shows from ${tokens(settings.handoffAt)} tokens of context` : 'always shown'}.`)
+  lines.push(`Settings: /${names.cache} ttl 5|60|auto, /${names.cache} guard on|off, /${names.cache} big 150k, /${names.cache} alerts on|off, /${names.cache} handoff 120k|off. Board: /${names.board}.`)
   return lines.join('\n')
 }
 
@@ -455,7 +472,7 @@ export function register(on) {
     S.model = await $.session.model()
     await loadSettings($)
     await readRecording($)
-    names.cache = (await registerCommand($, 'cache', 'Cache Keeper status and settings', '[ttl 5|60|auto] [guard on|off] [big 150k] [alerts on|off]')) || names.cache
+    names.cache = (await registerCommand($, 'cache', 'Cache Keeper status and settings', '[ttl 5|60|auto] [guard on|off] [big 150k] [alerts on|off] [handoff 120k|off]')) || names.cache
     names.keepwarm = (await registerCommand($, 'keepwarm', 'Keep this session\'s prompt cache warm (default 4 hours), or /keepwarm off', '[hours|off]', true)) || names.keepwarm
     names.board = (await registerCommand($, 'board', 'Every local Claude Code session: state, context, cache, cost', '', true)) || names.board
     names.handoff = (await registerCommand($, 'handoff', 'Session handoff, then clear this chat and continue with it (/handoff continue)', '[continue]')) || names.handoff
@@ -585,6 +602,7 @@ export function register(on) {
       // usage unavailable: keep the per-request figures
     }
     if (H.armed && e.turnId !== H.notTurn) await captureHandoff($, e)
+    noteHandoffThreshold($)
     await heartbeat($, true)
     $.ui.invalidate('ui.render')
     return r
@@ -667,6 +685,12 @@ export function register(on) {
     } else if (key === 'big') {
       const n = parseTokens(value)
       if (n) settings.bigTokens = n
+    } else if (key === 'handoff') {
+      const n = value === 'off' || value === '0' ? 0 : parseTokens(value)
+      if (n !== undefined && n !== null && !Number.isNaN(n)) {
+        settings.handoffAt = n
+        handoffNotified = false
+      }
     }
     if (key) {
       await $.store.set('settings', settings)
@@ -738,12 +762,12 @@ export function register(on) {
     // is in, c clears this chat and sends it as the fresh chat's first prompt.
     const busy = handoffPending || H.armed
     const handoff = Button({ key: 'handoff', label: handoffPending ? 'handoff queued' : H.armed ? 'handoff running' : 'handoff', hotkey: 'h', plain: true, dimColor: busy, onPress: () => runHandoff($) })
-    let right = handoff
+    let right = handoffOffered() || busy || H.text || H.continuing ? handoff : null
     if (H.text || H.continuing) {
       const go = Button({ key: 'continue', label: H.continuing ? 'clearing' : 'clear and continue', hotkey: 'c', plain: true, onPress: () => clearAndContinue($) })
       right = Box({ flexDirection: 'row', columnGap: 2, children: [go, handoff] })
     }
-    const mine = Box({ flexDirection: 'row', justifyContent: 'space-between', width: '100%', columnGap: 2, children: [left, right] })
+    const mine = Box({ flexDirection: 'row', justifyContent: 'space-between', width: '100%', columnGap: 2, children: right ? [left, right] : [left] })
     return Box({ flexDirection: 'column', children: below ? [mine, below] : [mine] })
   })
 
@@ -772,6 +796,7 @@ function footerLabel() {
   const high = S.rateLimits.filter((l) => (l.percentUsed || 0) >= 80)
   if (high.length) parts.push(limitsText(high))
   if (H.text) parts.push(`handoff ready · /${names.handoff} continue`)
+  else if (settings.handoffAt && S.ctx >= settings.handoffAt) parts.push(`${tokens(S.ctx)} ctx · /${names.handoff}`)
   return parts.join(' · ')
 }
 
